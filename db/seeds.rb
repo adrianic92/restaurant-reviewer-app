@@ -7,9 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Clear existing records
-User.destroy_all
-Review.destroy_all
-Restaurant.destroy_all
 
 "seeding..."
 
