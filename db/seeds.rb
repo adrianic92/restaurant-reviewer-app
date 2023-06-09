@@ -8,7 +8,7 @@
 
 # Clear existing records
 
-"seeding..."
+puts "seeding..."
 
 User.create([
   { id: 1, username: 'adrian_s', password: 'encrypted_password', password_confirmation: 'encrypted_password', name: 'Adrian Sedano' },
@@ -31,4 +31,4 @@ Review.create([
   { id: 4, user_id: 3, restaurant_id: 3, description: 'Fantastic sushi!', rating: 4 }
 ])
 
-"seeding complete!" 
+puts "seeding complete!" 
