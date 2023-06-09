@@ -13,7 +13,7 @@ function App() {
       if (resp.ok) {
         resp.json()
         .then((user) => setUser(user))
-      }
+      } else {console.log("Not Authorized")}
     })
   }, []);
 
@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar/>
+      <NavBar setUser={setUser}/>
     </div>
   );
 }
