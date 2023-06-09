@@ -34,4 +34,4 @@ Review.create([
   { id: 4, user_id: 3, restaurant_id: 3, description: 'Fantastic sushi!', rating: 4 }
 ])
 
-"seeding complete!"
+"seeding complete!" 
