@@ -12,6 +12,7 @@ function Login({setUser}) {
             {logon ? 
             <LoginForm setUser={setUser} setLogon={setLogon}/> : 
             <SignupForm setUser={setUser} setLogon={setLogon}/>}
+
         </div>
     )
 }

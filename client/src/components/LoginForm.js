@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 
-function LoginForm({setUser}) { 
+function LoginForm({setUser, setLogon}) { 
     
     const [err, setErr] = useState([])
     const [password, setPassword] = useState("")
     const [username, setUsername] = useState("")
-
+    
     function handleSubmit(e) {
         e.preventDefault();
         fetch("/login", {
@@ -30,14 +30,18 @@ function LoginForm({setUser}) {
     }
     
     return (
-        <form onSubmit={handleSubmit}>
-            <label>Username:</label>
-            <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
-            <label>Password:</label>
-            <input type="text" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-            {err.map( error => <p key={error} style={{color: "red"}}>{err}</p>)}
-            <button type="submit">Submit</button>
-        </form>
+        <div>
+            <form onSubmit={handleSubmit}>
+                <label>Username:</label>
+                <input autocomplete="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                <label>Password:</label>
+                <input autocomplete="current-password" type="text" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                {err.map( error => <p key={error} style={{color: "red"}}>{err}</p>)}
+                <button type="submit">Submit</button>
+            </form>
+            <p>Not a member? Click the button below to sign up now!</p>
+            <button onClick={() => setLogon(false)}>Sign up!</button>
+        </div>
     )
 }
 
