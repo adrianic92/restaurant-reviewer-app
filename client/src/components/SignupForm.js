@@ -35,9 +35,9 @@ function SignupForm({setUser, setLogon}) {
         <div>
             <form onSubmit={handleSubmit}>
                 <label>Username:</label>
-                <input autocomplete="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                <input autoComplete="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 <label>Password:</label>
-                <input autocomplete="current-password" type="text" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <input autoComplete="current-password" type="text" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 {err.map( error => <p key={error} style={{color: "red"}}>{err}</p>)}
                 <button type="submit">Submit</button>
             </form>
