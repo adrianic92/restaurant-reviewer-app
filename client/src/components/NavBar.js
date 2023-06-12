@@ -14,16 +14,10 @@ function NavBar({setUser}) {
         })
     }
     return (
-        <div>
-            <li>
-                <Link to="/">Home</Link>
-            </li>
-            <li>
-                <Link to="/reviews">Reviews</Link>
-            </li>
-            <li>
-                <Link to="/" onClick={handleLogout}>Log Out</Link>
-            </li>
+        <div className="navbar">
+            <Link className="navbar-link" to="/">Home</Link>
+            <Link className="navbar-link" to="/reviews">Reviews</Link>
+            <Link className="navbar-link" to="/" onClick={handleLogout}>Log Out</Link>
         </div>
     )
 }
