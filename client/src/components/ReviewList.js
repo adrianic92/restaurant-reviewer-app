@@ -4,7 +4,6 @@ import '../ReviewList.css';
 function ReviewList({ reviews }) {
   return (
     <div className="review-list-container">
-      <h2 className="review-list-heading">Reviews</h2>
       {reviews.map((review) => (
         <div key={review.id} className="review-item">
           <h3>{review.title}</h3>

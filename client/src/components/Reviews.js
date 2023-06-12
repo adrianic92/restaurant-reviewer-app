@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ReviewList from "./ReviewList";
 
-function Reviews() {
-    const [reviews, setReviews] = useState([])
-    useEffect( () => {
-        fetch('/reviews')
-        .then(resp => resp.json())
-        .then(data => setReviews(data))
-    }, [] )
+function Reviews({title, reviews}) {
 
     return (
         <div>
+            {title}
             <ReviewList reviews={reviews}/>
         </div>
     )

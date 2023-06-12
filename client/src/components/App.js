@@ -9,6 +9,21 @@ import Reviews from './Reviews';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [allReviews, setAllReviews] = useState([])
+  const [myReviews, setMyReviews] = useState([])
+
+    
+  useEffect( () => {
+      fetch('/reviews')
+      .then(resp => resp.json())
+      .then(data => setAllReviews(data))
+  }, [] )
+
+  useEffect( () => {
+    fetch('/myreviews')
+    .then(resp => resp.json())
+    .then(data => setMyReviews(data))
+}, [] )
 
   useEffect(() => {
     fetch("/me")
@@ -24,6 +39,8 @@ function App() {
     return <Login setUser={setUser} />
   }
 
+  const userReviewsTitle = <h1>All Reviews</h1>
+  const myReviewsTitle = <h1>My Reviews</h1>
 
 
   return (
@@ -33,8 +50,11 @@ function App() {
         <Route exact path="/">
           <Home/>
         </Route>
-        <Route exact path="/reviews">
-          <Reviews/>
+        <Route exact path="/allreviews">
+          <Reviews reviews={allReviews} title={userReviewsTitle}/>
+        </Route>
+        <Route exact path="/myreviews">
+          <Reviews reviews={myReviews} title={myReviewsTitle}/>
         </Route>
       </Switch>
       

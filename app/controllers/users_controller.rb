@@ -11,9 +11,9 @@ class UsersController < ApplicationController
         render json: @current_user
     end
 
-    def display
-        users = User.all
-        render json: users
+    def my_reviews
+        reviews = @current_user.reviews
+        render json: reviews
     end
 
     private
