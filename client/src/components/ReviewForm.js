@@ -1,34 +1,23 @@
 import React, {useState} from "react";
+import { useParams } from "react-router-dom";
 
-function ReviewForm({user}) {
+function ReviewForm({user, restaurants}) {
+    const {id} = useParams()
     const [description, setDescription] = useState('');
     const [rating, setRating] = useState('');
-    const [restaurant, setRestaurant] = useState('');
+    const restaurant = restaurants.find(restaurant => restaurant.id === parseInt(id))
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("Restaurant ID:", id, "User ID:", user.id, "Description:", description, "Rating:", rating)
     };
+
+    if (!restaurant) { return (<h1>Loading...</h1>)}
 
   return (
     <div>
-      <h2>Write a Review</h2>
+      <h2>Write a Review for {restaurant.name}</h2>
       <form onSubmit={handleSubmit}>
-      <div>
-          <label htmlFor="restaurant">Restaurant:</label>
-          <select
-            id="restaurant"
-            value={restaurant}
-            onChange={(e) => setRestaurant(e.target.value)}
-          >
-            <option value="">Select restaurant</option>
-            {/* Render options dynamically based on restaurant data */}
-            {/* {restaurants.map((restaurant) => (
-              <option key={restaurant.id} value={restaurant.id}>
-                {restaurant.name}
-              </option>
-            ))} */}
-          </select>
-        </div>
         <div>
           <label htmlFor="description">Describe your experience here:</label>
           <textarea

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import AllReviewList from "./AllReviewList";
 
-function Reviews({title, reviews, setAll}) {
+function Reviews({title, reviews}) {
     
     const allReviews = reviews.map((review) => {
         return(

@@ -5,7 +5,7 @@ function Restaurants({restaurants}) {
     
     const allRestaurants = restaurants.map(restaurant => {
         return (
-            <RestaurantDetail key={restaurant.id}restaurant={restaurant} />
+            <RestaurantDetail key={restaurant.id} restaurant={restaurant}/>
         )
     })
     

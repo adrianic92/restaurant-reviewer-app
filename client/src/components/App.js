@@ -3,9 +3,10 @@ import Home from './Home';
 import Login from './Login';
 import NavBar from './NavBar';
 import {useEffect, useState} from 'react';
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Reviews from './Reviews';
 import Restaurants from './Restaurants';
+import ReviewForm from './ReviewForm';
 
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
   const [restaurants, setRestaurants] = useState([]);
   const [allReviews, setAllReviews] = useState([])
   const [myReviews, setMyReviews] = useState([])
-  const [all, setAll] = useState(true)
+
 
     
   useEffect( () => {
@@ -62,13 +63,16 @@ function App() {
           <Home/>
         </Route>
         <Route exact path="/allreviews">
-          <Reviews reviews={allReviews} title={userReviewsTitle} setAll={setAll}/>
+          <Reviews reviews={allReviews} title={userReviewsTitle} />
         </Route>
         <Route exact path="/myreviews">
-          <Reviews reviews={myReviews} title={myReviewsTitle} setAll={setAll}/>
+          <Reviews reviews={myReviews} title={myReviewsTitle}/>
         </Route>
         <Route exact path="/restaurants">
           <Restaurants restaurants={restaurants} />
+        </Route>
+        <Route exact path="/restaurants/:id">
+          <ReviewForm user={user} restaurants={restaurants} />
         </Route>
       </Switch>
       
