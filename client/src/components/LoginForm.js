@@ -24,11 +24,12 @@ function LoginForm({setUser, setLogon}) {
                 .then( user => setUser(user) )
             } else {
                 resp.json()
-                .then( error => setErr(console.log(error.errors)))
+                .then( error => setErr(error.errors))
             }
         })
     }
-    
+
+    const errorMessage = err.map( message => <p key={message} style={{color: "red"}}>{message}</p>)
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -36,7 +37,7 @@ function LoginForm({setUser, setLogon}) {
                 <input autoComplete="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 <label>Password:</label>
                 <input autoComplete="current-password" type="text" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                {err.map( error => <p key={error} style={{color: "red"}}>{err}</p>)}
+                {errorMessage}
                 <button type="submit">Submit</button>
             </form>
             <p>Not a member? Click the button below to sign up now!</p>

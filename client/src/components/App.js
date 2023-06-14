@@ -5,12 +5,15 @@ import NavBar from './NavBar';
 import {useEffect, useState} from 'react';
 import { Route, Switch, useHistory } from "react-router-dom";
 import Reviews from './Reviews';
+import Restaurants from './Restaurants';
 
 
 function App() {
   const [user, setUser] = useState(null);
+  const [restaurants, setRestaurants] = useState([]);
   const [allReviews, setAllReviews] = useState([])
   const [myReviews, setMyReviews] = useState([])
+  const [all, setAll] = useState(true)
 
     
   useEffect( () => {
@@ -24,6 +27,14 @@ function App() {
     .then(resp => resp.json())
     .then(data => setMyReviews(data))
 }, [] )
+
+  useEffect( () => {
+    fetch('/restaurants')
+    .then(resp => resp.json())
+    .then(data => setRestaurants(data))
+}, [] )
+
+  
 
   useEffect(() => {
     fetch("/me")
@@ -51,10 +62,13 @@ function App() {
           <Home/>
         </Route>
         <Route exact path="/allreviews">
-          <Reviews reviews={allReviews} title={userReviewsTitle}/>
+          <Reviews reviews={allReviews} title={userReviewsTitle} setAll={setAll}/>
         </Route>
         <Route exact path="/myreviews">
-          <Reviews reviews={myReviews} title={myReviewsTitle}/>
+          <Reviews reviews={myReviews} title={myReviewsTitle} setAll={setAll}/>
+        </Route>
+        <Route exact path="/restaurants">
+          <Restaurants restaurants={restaurants} />
         </Route>
       </Switch>
       

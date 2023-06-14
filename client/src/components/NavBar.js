@@ -18,6 +18,7 @@ function NavBar({setUser}) {
             <Link className="navbar-link" to="/">Home</Link>
             <Link className="navbar-link" to="/myreviews"> My Reviews</Link>
             <Link className="navbar-link" to="/allreviews"> All Reviews</Link>
+            <Link className="navbar-link" to="/restaurants">Restaurants</Link>
             <Link className="navbar-link" to="/" onClick={handleLogout}>Log Out</Link>
         </div>
     )

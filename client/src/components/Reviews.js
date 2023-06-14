@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
-import ReviewList from "./ReviewList";
+import AllReviewList from "./AllReviewList";
 
-function Reviews({title, reviews}) {
+function Reviews({title, reviews, setAll}) {
+    
+    const allReviews = reviews.map((review) => {
+        return(
+            <AllReviewList key={review.id} review={review}/>
+        )})
+
+    if (title.props.children === 'All Reviews') {
+        console.log(true)
+    } else { console.log(false)}
 
     return (
         <div>
             {title}
-            <ReviewList reviews={reviews}/>
+            {allReviews}
         </div>
     )
 }
