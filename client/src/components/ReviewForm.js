@@ -9,7 +9,21 @@ function ReviewForm({user, restaurants}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Restaurant ID:", id, "User ID:", user.id, "Description:", description, "Rating:", rating)
+        const newReview = {
+          "user_id": user.id,
+          "restaurant_id": id,
+          "description": description,
+          "rating": rating
+        }
+        fetch('/reviews', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newReview)
+        })
+        .then(resp => resp.json())
+        .then(data => console.log(data))
     };
 
     if (!restaurant) { return (<h1>Loading...</h1>)}

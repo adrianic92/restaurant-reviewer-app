@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom'
 
-function NavBar({setUser}) {
+function NavBar({setUser, user}) {
 
     function handleLogout() {
         fetch('/logout', {
@@ -20,6 +20,7 @@ function NavBar({setUser}) {
             <Link className="navbar-link" to="/allreviews"> All Reviews</Link>
             <Link className="navbar-link" to="/restaurants">Restaurants</Link>
             <Link className="navbar-link" to="/" onClick={handleLogout}>Log Out</Link>
+            <h2>Welcome {user.name}</h2>
         </div>
     )
 }
