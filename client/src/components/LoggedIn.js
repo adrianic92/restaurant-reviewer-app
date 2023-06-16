@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import Reviews from './Reviews';
 import Restaurants from './Restaurants';
 import ReviewForm from './ReviewForm';
+import RestaurantForm from './RestaurantForm';
 
 
 function LoggedIn({user, setUser}) {
@@ -50,6 +51,9 @@ function LoggedIn({user, setUser}) {
         </Route>
         <Route exact path="/restaurants">
           <Restaurants restaurants={restaurants} />
+        </Route>
+        <Route exact path="/restaurants/new">
+          <RestaurantForm setRestaurants={setRestaurants} restaurants={restaurants}/>
         </Route>
         <Route exact path="/restaurants/:id">
           <ReviewForm user={user} restaurants={restaurants} />
