@@ -1,11 +1,13 @@
 import React, {useState} from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 function ReviewForm({user, restaurants, addAll}) {
     const {id} = useParams()
     const [description, setDescription] = useState('');
     const [rating, setRating] = useState('');
     const restaurant = restaurants.find(restaurant => restaurant.id === parseInt(id))
+    const history = useHistory()
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,7 +25,10 @@ function ReviewForm({user, restaurants, addAll}) {
           body: JSON.stringify(newReview)
         })
         .then(resp => resp.json())
-        .then(data => addAll(data))
+        .then(data => {
+          addAll(data);
+          history.push('/myreviews')
+        })
     };
 
     if (!restaurant) { return (<h1>Loading...</h1>)}

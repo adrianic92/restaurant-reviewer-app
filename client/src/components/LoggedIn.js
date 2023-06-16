@@ -36,9 +36,9 @@ function addAll(review) {
   setMyReviews([...myReviews, review])
   const addedRestaurants = restaurants.map( restaurant => {
     if (restaurant.id === parseInt(review.restaurant_id)) {
-      const updatedResto = Object.assign({}, restaurant)
-      updatedResto.reviews.push(review)
-      return updatedResto;
+      const updatedReview = Object.assign({}, restaurant)
+      updatedReview.reviews.push(review)
+      return updatedReview;
   }
       return restaurant;
   })
@@ -46,10 +46,25 @@ function addAll(review) {
 
 }
 
-  console.log(restaurants, "Restaurants")  
-  const userReviewsTitle = <h1>All Reviews</h1>
-  const myReviewsTitle = <h1>My Reviews</h1>
+function deleteAll(review) {
+  const updatedAllReviews = allReviews.filter( rev => parseInt(rev.id) !== parseInt(review.id))
+  setAllReviews(updatedAllReviews)
 
+  const updatedMyReviews = myReviews.filter( rev => parseInt(rev.id) !== parseInt(review.id))
+  setMyReviews(updatedMyReviews)
+
+  const updatedRestaurants = restaurants.map( restaurant => {
+    if (restaurant.id === parseInt(review.restaurant_id)) {
+      const updatedReviews = restaurant.reviews.filter( item => item.id !== review.id)
+      const updatedRestaurant = Object.assign({}, restaurant)
+      updatedRestaurant.reviews = updatedReviews
+      return updatedRestaurant;
+  } else {
+      return restaurant;
+  }})
+  setRestaurants(updatedRestaurants)
+
+}
 
   return (
     <div className="App">
@@ -59,10 +74,10 @@ function addAll(review) {
           <Home/>
         </Route>
         <Route exact path="/allreviews">
-          <Reviews reviews={allReviews} title={userReviewsTitle} />
+          <Reviews reviews={allReviews} change={true} deleteAll={deleteAll}/>
         </Route>
         <Route exact path="/myreviews">
-          <Reviews reviews={myReviews} title={myReviewsTitle}/>
+          <Reviews reviews={myReviews} change={false} deleteAll={deleteAll}/>
         </Route>
         <Route exact path="/restaurants">
           <Restaurants user={user} restaurants={restaurants} />

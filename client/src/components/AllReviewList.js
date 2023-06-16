@@ -1,6 +1,14 @@
 import React from 'react';
 
-function AllReviewList({ review }) {
+function AllReviewList({ review, change, deleteAll }) {
+  
+  function handleDelete() {
+    fetch(`/reviews/${review.id}`, {
+      method: "DELETE"
+    })
+    .then(() => deleteAll(review))
+  }
+
   return (
     <div className="review-list-container">
         <div key={review.id} className="review-item">
@@ -11,7 +19,7 @@ function AllReviewList({ review }) {
             <br/>
             {"★".repeat(review.rating)}
             <br/>
-            By: {review.user.name}
+            {change ? `By: ${review.user.name}` : <button onClick={handleDelete}>Delete Review</button>}
           </p>
         </div>
     </div>

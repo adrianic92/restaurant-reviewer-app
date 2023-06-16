@@ -12,7 +12,7 @@ function RestaurantDetail({ restaurant }) {
       <p><strong>{restaurant.name}</strong></p>
       <p>Location: {restaurant.location}</p>
       <img src={restaurant.image} alt={restaurant.name} className="restaurant-image" />
-      <button onClick={() => setShow(!show)}>Show Reviews</button>
+      <button onClick={() => setShow(!show)}>{!show? "Show Reviews" : "Hide Reviews"}</button>
       {show ? <ShowReviews reviews={restaurant.reviews} /> : null}
       <Link to={`/restaurants/${restaurant.id}`}>Write a Review!</Link>
     </div>

@@ -4,7 +4,6 @@ function ShowReviews({reviews}) {
     
 
     const allReviews = reviews.map(review => {
-        console.log(review)
         return (
             <li key={review.id}>"{review.description}" {"★".repeat(review.rating)} - {review.user.name}</li>
         )
