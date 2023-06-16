@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
 
     def index
         restaurants = Restaurant.all
-        render json: restaurants
+        render json: restaurants, include: ['reviews', 'reviews.user']
     end
 
     def create

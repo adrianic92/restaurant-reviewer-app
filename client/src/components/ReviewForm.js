@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useParams } from "react-router-dom";
 
-function ReviewForm({user, restaurants}) {
+function ReviewForm({user, restaurants, addAll}) {
     const {id} = useParams()
     const [description, setDescription] = useState('');
     const [rating, setRating] = useState('');
@@ -23,10 +23,11 @@ function ReviewForm({user, restaurants}) {
           body: JSON.stringify(newReview)
         })
         .then(resp => resp.json())
-        .then(data => console.log(data))
+        .then(data => addAll(data))
     };
 
     if (!restaurant) { return (<h1>Loading...</h1>)}
+
 
   return (
     <div>

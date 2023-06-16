@@ -31,7 +31,22 @@ function LoggedIn({user, setUser}) {
     .then(data => setRestaurants(data))
 }, [] )
 
-  
+function addAll(review) {
+  setAllReviews([...allReviews, review])
+  setMyReviews([...myReviews, review])
+  const addedRestaurants = restaurants.map( restaurant => {
+    if (restaurant.id === parseInt(review.restaurant_id)) {
+      const updatedResto = Object.assign({}, restaurant)
+      updatedResto.reviews.push(review)
+      return updatedResto;
+  }
+      return restaurant;
+  })
+  setRestaurants(addedRestaurants)
+
+}
+
+  console.log(restaurants, "Restaurants")  
   const userReviewsTitle = <h1>All Reviews</h1>
   const myReviewsTitle = <h1>My Reviews</h1>
 
@@ -50,13 +65,13 @@ function LoggedIn({user, setUser}) {
           <Reviews reviews={myReviews} title={myReviewsTitle}/>
         </Route>
         <Route exact path="/restaurants">
-          <Restaurants restaurants={restaurants} />
+          <Restaurants user={user} restaurants={restaurants} />
         </Route>
         <Route exact path="/restaurants/new">
           <RestaurantForm setRestaurants={setRestaurants} restaurants={restaurants}/>
         </Route>
         <Route exact path="/restaurants/:id">
-          <ReviewForm user={user} restaurants={restaurants} />
+          <ReviewForm restaurants={restaurants} user={user} addAll={addAll}/>
         </Route>
       </Switch>
       
