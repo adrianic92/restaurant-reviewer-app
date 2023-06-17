@@ -1,13 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import AllReviewList from "./AllReviewList";
 
 function Reviews({reviews, change, deleteAll}) {
     
+    const [edit, setEdit] = useState(false)
+
+    function handleEdit() {
+      setEdit(edit => !edit)
+      console.log(edit)
+    }
+
     if (!reviews) { return ( <h1>Loading...</h1>)}
 
     const allReviews = reviews.map((review) => {
         return(
-            <AllReviewList key={review.id} review={review} change={change} deleteAll={deleteAll}/>
+            <AllReviewList key={review.id} review={review} change={change} deleteAll={deleteAll} handleEdit={handleEdit}/>
         )})
 
     return (

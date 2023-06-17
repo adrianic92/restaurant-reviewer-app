@@ -6,6 +6,7 @@ import Reviews from './Reviews';
 import Restaurants from './Restaurants';
 import ReviewForm from './ReviewForm';
 import RestaurantForm from './RestaurantForm';
+import EditReview from './EditReview';
 
 
 function LoggedIn({user, setUser}) {
@@ -66,6 +67,8 @@ function deleteAll(review) {
 
 }
 
+console.log(myReviews)
+
   return (
     <div className="App">
       <NavBar user={user} setUser={setUser}/>
@@ -79,6 +82,9 @@ function deleteAll(review) {
         <Route exact path="/myreviews">
           <Reviews reviews={myReviews} change={false} deleteAll={deleteAll}/>
         </Route>
+        <Route exact path="/myreviews/edit/:id">
+          <EditReview reviews={myReviews}/>
+        </Route>
         <Route exact path="/restaurants">
           <Restaurants user={user} restaurants={restaurants} />
         </Route>
@@ -87,6 +93,9 @@ function deleteAll(review) {
         </Route>
         <Route exact path="/restaurants/:id">
           <ReviewForm restaurants={restaurants} user={user} addAll={addAll}/>
+        </Route>
+        <Route path="*">
+          <h1>404 NOT FOUND</h1>
         </Route>
       </Switch>
       

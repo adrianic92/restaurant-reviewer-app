@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+    
     def index
         reviews = Review.all
         render json: reviews
@@ -13,6 +14,12 @@ class ReviewsController < ApplicationController
         review = find_review
         review.destroy
         head :no_content
+    end
+
+    def update
+        review = find_review
+        review.update(review_params)
+        render json: review
     end
 
     private
