@@ -1,37 +1,28 @@
-import React, {useEffect, useState} from "react";
-import { useParams, useHistory } from "react-router-dom";
+import React from "react";
 
-function EditReview({reviews}) {
-    const {id} = useParams()
-    const history = useHistory()
-    
-    const [desc, setDescription] = useState(``);
-    const [rate, setRating] = useState(``);
+function EditReview({review, handleChangeForm}) {
 
-    if (!reviews) { return (<h1>Loading...</h1>)}
-    
-    const review = reviews.find( rev => rev.id === parseInt(id))
+  function handleInputChange(e) {
+    handleChangeForm(e.target.name, e.target.value)
+  }
 
     if (!review) { return null }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const updatedReview = {
-          "description": description,
-          "rating": rating
-        }
-        fetch('/reviews', {
+
+        fetch(`/reviews/${review.id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify(updatedReview)
+          body: JSON.stringify(review)
         })
         .then(resp => resp.json())
         .then(data => {
           console.log(data);
-          history.push('/myreviews')
         })
+        console.log(review)
     };
 
     const { description, rating } = review
@@ -43,17 +34,17 @@ function EditReview({reviews}) {
         <div>
           <label htmlFor="description">Describe your experience here:</label>
           <textarea
-            id="description"
-            value={desc}
-            onChange={(e) => setDescription(e.target.value)}
+            name="description"
+            value={description}
+            onChange={handleInputChange}
           ></textarea>
         </div>
         <div>
           <label htmlFor="rating">Rating:</label>
           <select
-            id="rating"
+            name="rating"            
             value={rating}
-            onChange={(e) => setRating(e.target.value)}
+            onChange={handleInputChange}
           >
             <option value="">Select rating</option>
             <option value="1">1 Star</option>

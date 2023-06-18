@@ -6,7 +6,6 @@ import Reviews from './Reviews';
 import Restaurants from './Restaurants';
 import ReviewForm from './ReviewForm';
 import RestaurantForm from './RestaurantForm';
-import EditReview from './EditReview';
 
 
 function LoggedIn({user, setUser}) {
@@ -67,7 +66,9 @@ function deleteAll(review) {
 
 }
 
-console.log(myReviews)
+function updateAll(review) {
+
+}
 
   return (
     <div className="App">
@@ -80,10 +81,7 @@ console.log(myReviews)
           <Reviews reviews={allReviews} change={true} deleteAll={deleteAll}/>
         </Route>
         <Route exact path="/myreviews">
-          <Reviews reviews={myReviews} change={false} deleteAll={deleteAll}/>
-        </Route>
-        <Route exact path="/myreviews/edit/:id">
-          <EditReview reviews={myReviews}/>
+          <Reviews reviews={myReviews} change={false} deleteAll={deleteAll} updateAll={updateAll}/>
         </Route>
         <Route exact path="/restaurants">
           <Restaurants user={user} restaurants={restaurants} />

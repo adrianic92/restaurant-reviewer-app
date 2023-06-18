@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-function AllReviewList({ review, change, deleteAll, handleEdit }) {
+function AllReviewList({ review, change, deleteAll, setSelectedReview }) {
   
-  
+  function handleEdit() {
+    setSelectedReview(review)
+  }
 
   function handleDelete() {
     fetch(`/reviews/${review.id}`, {
@@ -16,7 +17,7 @@ function AllReviewList({ review, change, deleteAll, handleEdit }) {
     <div className="review-list-container">
         <div key={review.id} className="review-item">
         
-            {review.restaurant.name}
+            <strong>{review.restaurant.name}</strong>
             <br/>
             {review.description}
             <br/>
@@ -27,8 +28,7 @@ function AllReviewList({ review, change, deleteAll, handleEdit }) {
             `By: ${review.user.name}` : 
             <div>
               <button onClick={handleDelete}>Delete Review</button>
-              <button onClick={handleEdit}>Edit Restaurant</button>
-              <Link to={`/myreviews/edit/${review.id}`}>Edit Restaurant Review</Link>
+              <button onClick={handleEdit}>Edit Review</button>
             </div>
             }
         </div>
