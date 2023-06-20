@@ -1,7 +1,8 @@
-import '../App.css';
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState, createContext} from 'react';
 import LoggedIn from './LoggedIn';
 import Login from './Login';
+
+export const UserContext = createContext();
 
 function App() {
   const [user, setUser] = useState(null);
@@ -20,7 +21,9 @@ function App() {
     return <Login setUser={setUser} />
   } else {
     return (
-      <LoggedIn user={user} setUser={setUser}/>
+      <UserContext.Provider value={[user, setUser]}>
+        <LoggedIn />
+      </UserContext.Provider>
     )
   }
 }

@@ -8,7 +8,7 @@ import ReviewForm from './ReviewForm';
 import RestaurantForm from './RestaurantForm';
 
 
-function LoggedIn({user, setUser}) {
+function LoggedIn() {
   const [restaurants, setRestaurants] = useState([]);
   const [allReviews, setAllReviews] = useState([])
   const [myReviews, setMyReviews] = useState([])
@@ -67,12 +67,39 @@ function deleteAll(review) {
 }
 
 function updateAll(review) {
+  const updatedAllReviews = allReviews.map( rev => {
+    if (rev.id === review.id) {
+      return review
+    } else {return rev}
+  })
+  setAllReviews(updatedAllReviews)
+
+  const updatedMyReviews = myReviews.map ( rev => {
+    if (rev.id === review.id) {
+      return review
+    } else { return rev }
+  })
+  setMyReviews(updatedMyReviews)
+
+  const updatedRestaurants = restaurants.map( rest => {
+    if (rest.id === review.restaurant_id) {
+      const updatedReviews = rest.reviews.map( rev => {
+        if (rev.id === review.id) {
+          return review
+        } else { return rev }
+      } )
+      const updatedRestaurant = Object.assign({}, rest)
+      updatedRestaurant.reviews = updatedReviews
+      return updatedRestaurant
+    } else { return rest}
+  })
+  setRestaurants(updatedRestaurants)
 
 }
 
   return (
     <div className="App">
-      <NavBar user={user} setUser={setUser}/>
+      <NavBar />
       <Switch>
         <Route exact path="/">
           <Home/>
@@ -84,13 +111,13 @@ function updateAll(review) {
           <Reviews reviews={myReviews} change={false} deleteAll={deleteAll} updateAll={updateAll}/>
         </Route>
         <Route exact path="/restaurants">
-          <Restaurants user={user} restaurants={restaurants} />
+          <Restaurants restaurants={restaurants} />
         </Route>
         <Route exact path="/restaurants/new">
           <RestaurantForm setRestaurants={setRestaurants} restaurants={restaurants}/>
         </Route>
         <Route exact path="/restaurants/:id">
-          <ReviewForm restaurants={restaurants} user={user} addAll={addAll}/>
+          <ReviewForm restaurants={restaurants} addAll={addAll}/>
         </Route>
         <Route path="*">
           <h1>404 NOT FOUND</h1>

@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        review = Review.create!(review_params)
+        review = Review.create!(review_create_params)
         render json: review, status: :created
     end
 
@@ -18,14 +18,18 @@ class ReviewsController < ApplicationController
 
     def update
         review = find_review
-        review.update(review_params)
+        review.update(review_update_params)
         render json: review
     end
 
     private
 
-    def review_params
+    def review_create_params
         params.permit(:user_id, :restaurant_id, :rating, :description)
+    end
+
+    def review_update_params
+        params.permit(:rating, :description)
     end
 
     def find_review

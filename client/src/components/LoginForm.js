@@ -36,7 +36,7 @@ function LoginForm({setUser, setLogon}) {
                 <label>Username:</label>
                 <input autoComplete="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 <label>Password:</label>
-                <input autoComplete="current-password" type="text" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <input autoComplete="current-password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 {errorMessage}
                 <button type="submit">Submit</button>
             </form>

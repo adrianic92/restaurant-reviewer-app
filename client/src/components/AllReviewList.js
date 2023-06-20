@@ -1,9 +1,10 @@
 import React from 'react';
 
-function AllReviewList({ review, change, deleteAll, setSelectedReview }) {
+function AllReviewList({ review, change, deleteAll, setSelectedReview, setShow }) {
   
   function handleEdit() {
     setSelectedReview(review)
+    setShow(true)
   }
 
   function handleDelete() {

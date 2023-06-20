@@ -1,13 +1,14 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { useParams, useHistory } from "react-router-dom";
+import { UserContext } from "./App";
 
-function ReviewForm({user, restaurants, addAll}) {
+function ReviewForm({restaurants, addAll}) {
     const {id} = useParams()
     const [description, setDescription] = useState('');
     const [rating, setRating] = useState('');
     const restaurant = restaurants.find(restaurant => restaurant.id === parseInt(id))
     const history = useHistory()
-
+    const [user] = useContext( UserContext )
 
     const handleSubmit = (e) => {
         e.preventDefault();

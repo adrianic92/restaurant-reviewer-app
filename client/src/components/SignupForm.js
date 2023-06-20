@@ -47,9 +47,9 @@ function SignupForm({setUser, setLogon}) {
                 <label>Username:</label>
                 <input autoComplete="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 <label>New Password:</label>
-                <input autoComplete="new-password" type="text" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <input autoComplete="new-password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 <label>Confirm Password:</label>
-                <input autoComplete="confirm-password" type="text" name="passwordConfirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
+                <input autoComplete="confirm-password" type="password" name="passwordConfirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
                 {errorMessages}
                 <button type="submit">Submit</button>
             </form>

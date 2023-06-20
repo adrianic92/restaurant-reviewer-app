@@ -1,6 +1,6 @@
 import React from "react";
 
-function EditReview({review, handleChangeForm}) {
+function EditReview({review, handleChangeForm, setShow, updateAll}) {
 
   function handleInputChange(e) {
     handleChangeForm(e.target.name, e.target.value)
@@ -16,13 +16,16 @@ function EditReview({review, handleChangeForm}) {
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify(review)
+          body: JSON.stringify({
+            description: review.description,
+            rating: review.rating
+          })
         })
         .then(resp => resp.json())
         .then(data => {
-          console.log(data);
+          updateAll(data);
         })
-        console.log(review)
+        setShow(false)
     };
 
     const { description, rating } = review
