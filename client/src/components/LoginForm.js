@@ -29,19 +29,27 @@ function LoginForm({setUser, setLogon}) {
         })
     }
 
-    const errorMessage = err.map( message => <p key={message} style={{color: "red"}}>{message}</p>)
+    const errorMessage = err.map( message => <p key={message} className="errorMessage">{message}</p>)
     return (
-        <div>
+        <div className="center">
+            <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-                <label>Username:</label>
-                <input autoComplete="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
-                <label>Password:</label>
-                <input autoComplete="current-password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <div className="field">
+                    <input autoComplete="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    <span></span>
+                    <label>Username:</label>
+                </div>
+                <div className="field">
+                    <input autoComplete="current-password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <span></span>
+                    <label>Password:</label>
+                </div>
                 {errorMessage}
-                <button type="submit">Submit</button>
+                <button type="submit">Login</button>
             </form>
-            <p>Not a member? Click the button below to sign up now!</p>
-            <button onClick={() => setLogon(false)}>Sign up!</button>
+            
+            <div className="signup_link">Not a member?<br/>Click the button below to sign up now!<br/>
+            <a onClick={() => setLogon(false)}>Sign up!</a></div>
         </div>
     )
 }

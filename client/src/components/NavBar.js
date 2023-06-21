@@ -18,13 +18,13 @@ function NavBar() {
     }
     return (
         <div className="navbar">
-            <h2>Welcome {user.name}</h2>
+            <h2 className="welcome">Welcome {user.name}</h2>
             <ul>
                 <li><Link className="navbar-link" to="/">Home</Link></li>
                 <li><Link className="navbar-link" to="/myreviews"> My Reviews</Link></li>
                 <li><Link className="navbar-link" to="/allreviews"> All Reviews</Link></li>
                 <li><Link className="navbar-link" to="/restaurants">Restaurants</Link></li>
-                <li><Link className="navbar-link" to="/" onClick={handleLogout}>Log Out</Link></li>
+                <li><Link className="logout-btn" to="/" onClick={handleLogout}>Log Out</Link></li>
             </ul>
         </div>
     )

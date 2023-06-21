@@ -15,10 +15,12 @@ function Restaurants({restaurants}) {
     return (
         <div>
             <h1>Restaurants</h1>
-            {allRestaurants}
+            <div className="cards">
+                {allRestaurants}
+                <p><br></br></p>
+            </div>
             <h3>Don't see your restaurant? Click Below to add a new restaurant!</h3>
-            <Link to={`/restaurants/new`}>Add a New Restaurant</Link>
-            <p><br></br></p>
+                <Link to={`/restaurants/new`}>Add a New Restaurant</Link>
         </div>
     )
 }

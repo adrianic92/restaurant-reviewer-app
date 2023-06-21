@@ -35,26 +35,40 @@ function SignupForm({setUser, setLogon}) {
 
     const errorMessages = err.map( error => {
         return (
-            <li key={error} style={{color: "red"}}>{error}</li>
+            <li key={error} className="errorMessage">{error}</li>
         )
     })
     
     return (
-        <div>
+        <div className="center">
+            <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
-                <label>Name:</label>
-                <input autoComplete="name" type="text" name="name" value={name} onChange={(e) => setName(e.target.value)}/>
-                <label>Username:</label>
-                <input autoComplete="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
-                <label>New Password:</label>
-                <input autoComplete="new-password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                <label>Confirm Password:</label>
-                <input autoComplete="confirm-password" type="password" name="passwordConfirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
+                <div className="field">    
+                    <input autoComplete="name" type="text" name="name" value={name} onChange={(e) => setName(e.target.value)}/>
+                    <span></span>
+                    <label>Name:</label>                    
+                </div>
+                <div className="field">
+                    <input autoComplete="username" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    <span></span>
+                    <label>Username:</label>                                       
+                </div>
+                <div className="field">
+                    <input autoComplete="new-password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <span></span>
+                    <label>New Password:</label>
+                </div>
+                <div className="field">
+                    <input autoComplete="confirm-password" type="password" name="passwordConfirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
+                    <span></span>
+                    <label>Confirm Password:</label>
+                </div>
                 {errorMessages}
                 <button type="submit">Submit</button>
             </form>
-            <p>Already a member? Click the button below to log in!</p>
-            <button onClick={() => setLogon(true)}>Log In!</button>
+            <div className="signup_link">Already a member?<br/>Click the button below to log in!<br/>
+            <a onClick={() => setLogon(true)}>Log In!</a>
+            </div>
         </div>
     )
 }
