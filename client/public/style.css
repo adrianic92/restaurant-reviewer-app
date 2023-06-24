@@ -2,29 +2,43 @@
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    max-width: 100%;
 }
 
 html {
     min-height: 100vh;
-    width: 100vw;
     background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("https://images.pexels.com/photos/1342641/pexels-photo-1342641.jpeg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    max-width: 100%;
 }
 
 body {
     height: 100vh;
-    width: 100%;
     display: grid;
+    max-width: 100%;
+}
+
+.title{
+    color: white;
+    padding: 1rem 0 0 0;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.outer {
+    display: grid;
+    justify-content: center;
 }
 
 .main{
-    width: 100vw;
+    max-width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px,1fr));
-    padding: 20px;
-    grid-gap: 40px;
+    grid-gap: 2%;
+    padding: 5%;
+    justify-content: center;
 }
 
 .welcome{
@@ -34,13 +48,14 @@ body {
 
 .navContainer{
     display: grid;
+    max-width: 100%;
     grid-template-columns: 1fr;
 }
 
 .navbar {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    width: 80vw;
+    max-width: 100%;
     align-items: center;
     justify-content:center;
     padding: 20px 0px;
@@ -204,17 +219,25 @@ form .field{
     margin: 30px 0;
     text-align: center;
     font-size: 16px;
-    color: #666666;
-    cursor: pointer;
+    color: hsl(1, 1%, 40%);
   }
-  .signup_link a{
+  .signup_link .switcher{
     color: hsl(204, 70%, 50%);
     text-decoration: none;
     transition: color .5s;
+    background: none;
+    border: none;
+    font-size: medium;
   }
-  .signup_link a:hover{
+  .signup_link .switcher:hover{
     text-decoration: underline;
     color: hsl(204, 70%, 30%);
+    background: none;
+    font-size: medium;
+  }
+
+  .switcher{
+    cursor: pointer;
   }
   
   .errorMessage {
@@ -267,6 +290,7 @@ form .field{
 
 .details{
     padding: 20px 10px;
+    text-align: center;
 }
 
 .details > h3{
@@ -399,4 +423,14 @@ form .field{
 
 .submitButton:hover{
     background: hsl(204, 70%, 60%);
+}
+
+.by {
+    color: gold;
+    font-style: italic;
+}
+
+.delete:hover{
+    background-color: red;
+    color: white;
 }

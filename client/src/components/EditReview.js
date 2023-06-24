@@ -34,7 +34,7 @@ function EditReview({review, handleChangeForm, setShow, updateAll}) {
     <div className="editor">
       <div className="grid1">
         <div className="imageContainer">
-          <img src={review.restaurant.image} alt="image"/>
+          <img src={review.restaurant.image} alt="restaurant"/>
         </div>
       </div>
       <div className="grid2">

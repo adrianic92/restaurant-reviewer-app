@@ -16,6 +16,7 @@ function AllReviewList({ review, change, deleteAll, setSelectedReview, setShow }
 
   return (
     <div className='block'>
+      <div className='card'>
         <div className='details' key={review.id}>
         
             <h2>{review.restaurant.name}</h2>
@@ -26,13 +27,14 @@ function AllReviewList({ review, change, deleteAll, setSelectedReview, setShow }
             </h3>
             {
             change ? 
-            `By: ${review.user.name}` : 
+            <h4 className='by'>{review.user.name}</h4> : 
             <div>
-              <button onClick={handleDelete}>Delete Review</button>
-              <button onClick={handleEdit}>Edit Review</button>
+              <button className="submitButton" onClick={handleEdit}>Edit Review</button>
+              <button className="submitButton delete" onClick={handleDelete}>Delete Review</button>
             </div>
             }
         </div>
+      </div>
     </div>
   );
 };

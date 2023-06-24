@@ -40,7 +40,7 @@ function ReviewForm({restaurants, addAll}) {
       <div className="editor">
         <div className="grid1">
           <div className="imageContainer">
-            <img src={restaurant.image}/>
+            <img alt={restaurant.name}src={restaurant.image}/>
           </div>
         </div>
         <div className="grid2">

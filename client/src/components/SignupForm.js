@@ -67,7 +67,7 @@ function SignupForm({setUser, setLogon}) {
                 <button className="loginButton" type="submit">Submit</button>
             </form>
             <div className="signup_link">Already a member?<br/>Click the button below to log in!<br/>
-            <a onClick={() => setLogon(true)}>Log In!</a>
+            <button className="switcher" onClick={() => setLogon(true)}>Log In!</button>
             </div>
         </div>
     )

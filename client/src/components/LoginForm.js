@@ -45,11 +45,11 @@ function LoginForm({setUser, setLogon}) {
                     <label>Password:</label>
                 </div>
                 {errorMessage}
-                <button class="loginButton" type="submit">Login</button>
+                <button className="loginButton" type="submit">Login</button>
             </form>
             
             <div className="signup_link">Not a member?<br/>Click the button below to sign up now!<br/>
-            <a onClick={() => setLogon(false)}>Sign up!</a></div>
+            <button className="switcher" onClick={() => setLogon(false)}>Sign up!</button></div>
         </div>
     )
 }
