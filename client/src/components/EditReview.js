@@ -31,34 +31,44 @@ function EditReview({review, handleChangeForm, setShow, updateAll}) {
     const { description, rating } = review
 
   return (
-    <div>
-      <h2>Edit Review for {review.restaurant.name}</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="description">Describe your experience here:</label>
-          <textarea
-            name="description"
-            value={description}
-            onChange={handleInputChange}
-          ></textarea>
+    <div className="editor">
+      <div className="grid1">
+        <div className="imageContainer">
+          <img src={review.restaurant.image} alt="image"/>
         </div>
-        <div>
-          <label htmlFor="rating">Rating:</label>
-          <select
-            name="rating"            
-            value={rating}
-            onChange={handleInputChange}
-          >
-            <option value="">Select rating</option>
-            <option value="1">1 Star</option>
-            <option value="2">2 Stars</option>
-            <option value="3">3 Stars</option>
-            <option value="4">4 Stars</option>
-            <option value="5">5 Stars</option>
-          </select>
+      </div>
+      <div className="grid2">
+        <div className="infoContainer">
+          <h1>Edit Review for {review.restaurant.name}</h1>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="description">Describe your experience here:</label>
+              <textarea
+                name="description"
+                value={description}
+                onChange={handleInputChange}
+              ></textarea>
+            </div>
+            <br/>
+            <div>
+              <label htmlFor="rating">Rating:</label>
+              <select style={{textAlign: "center"}}
+                name="rating"            
+                value={rating}
+                onChange={handleInputChange}
+              >
+                <option value="">Select rating</option>
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+              </select>
+            </div>
+            <button type="submit" className="submitButton">Submit</button>
+          </form>
         </div>
-        <button type="submit">Submit</button>
-      </form>
+      </div>
     </div>
   )
 }

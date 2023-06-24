@@ -5,11 +5,11 @@ function ShowReviews({reviews}) {
 
     const allReviews = reviews.map(review => {
         return (
-            <li key={review.id}>"{review.description}" {"★".repeat(review.rating)} - {review.user.name}</li>
+            <li key={review.id} className="list-item">"{review.description}" {"★".repeat(review.rating)} - {review.user.name}</li>
         )
       })
     return (
-        <div>{allReviews}</div>
+        <ul className="list">{allReviews}</ul>
     )
 }
 

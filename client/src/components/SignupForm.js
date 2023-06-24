@@ -64,7 +64,7 @@ function SignupForm({setUser, setLogon}) {
                     <label>Confirm Password:</label>
                 </div>
                 {errorMessages}
-                <button type="submit">Submit</button>
+                <button className="loginButton" type="submit">Submit</button>
             </form>
             <div className="signup_link">Already a member?<br/>Click the button below to log in!<br/>
             <a onClick={() => setLogon(true)}>Log In!</a>

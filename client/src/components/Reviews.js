@@ -22,10 +22,12 @@ function Reviews({reviews, change, deleteAll, updateAll}) {
 
     return (
         <div>
-            {change ? <h1>All Reviews</h1> : 
-            <div><h1>My Reviews</h1></div>}
-            {show ? <EditReview review={selectedReview} handleChangeForm={handleChangeForm} updateAll={updateAll} setShow={setShow}/> : null}
+            {change ? <h1 className="mainH1">All Reviews</h1> : 
+            <h1 className="mainH1">My Reviews</h1>}
+            {!change ? (show ? <EditReview review={selectedReview} handleChangeForm={handleChangeForm} updateAll={updateAll} setShow={setShow}/> : null) : null}
+        <div className="main">
             {allReviews}
+        </div>
         </div>
     )
 }

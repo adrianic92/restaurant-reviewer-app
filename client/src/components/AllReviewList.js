@@ -15,15 +15,15 @@ function AllReviewList({ review, change, deleteAll, setSelectedReview, setShow }
   }
 
   return (
-    <div className="review-list-container">
-        <div key={review.id} className="review-item">
+    <div className='block'>
+        <div className='details' key={review.id}>
         
-            <strong>{review.restaurant.name}</strong>
-            <br/>
+            <h2>{review.restaurant.name}</h2>
+            <h3>
             {review.description}
             <br/>
-            {"★".repeat(review.rating)}
-            <br/>
+            <span className='stars'>{"★".repeat(review.rating)}</span>
+            </h3>
             {
             change ? 
             `By: ${review.user.name}` : 

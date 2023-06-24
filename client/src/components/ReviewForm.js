@@ -37,33 +37,45 @@ function ReviewForm({restaurants, addAll}) {
 
   return (
     <div>
-      <h2>Write a Review for {restaurant.name}</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="description">Describe your experience here:</label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
+      <div className="editor">
+        <div className="grid1">
+          <div className="imageContainer">
+            <img src={restaurant.image}/>
+          </div>
         </div>
-        <div>
-          <label htmlFor="rating">Rating:</label>
-          <select
-            id="rating"
-            value={rating}
-            onChange={(e) => setRating(e.target.value)}
-          >
-            <option value="">Select rating</option>
-            <option value="1">1 Star</option>
-            <option value="2">2 Stars</option>
-            <option value="3">3 Stars</option>
-            <option value="4">4 Stars</option>
-            <option value="5">5 Stars</option>
-          </select>
+        <div className="grid2">
+          <div className="infoContainer">
+            <h1>Write a Review for <br/>{restaurant.name}</h1>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <label htmlFor="description">Describe your experience here:</label>
+                <textarea
+                    id="description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
+              <br/>
+              <div>
+              <label htmlFor="rating">Rating:</label>
+                <select style={{textAlign: "center"}}
+                  id="rating"
+                  value={rating}
+                  onChange={(e) => setRating(e.target.value)}>
+                  <option value="">Select rating</option>
+                  <option value="1">1 Star</option>
+                  <option value="2">2 Stars</option>
+                  <option value="3">3 Stars</option>
+                  <option value="4">4 Stars</option>
+                  <option value="5">5 Stars</option>
+                </select>
+                
+              </div>
+              <button className="submitButton" type="submit">Submit</button>
+            </form>
+          </div>
         </div>
-        <button type="submit">Submit</button>
-      </form>
+      </div>
     </div>
   );
 }

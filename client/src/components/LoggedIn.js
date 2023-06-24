@@ -102,7 +102,7 @@ function updateAll(review) {
       <NavBar />
       <Switch>
         <Route exact path="/">
-          <Home/>
+          <Home />
         </Route>
         <Route exact path="/allreviews">
           <Reviews reviews={allReviews} change={true} deleteAll={deleteAll}/>

@@ -14,7 +14,7 @@ function Restaurants({restaurants}) {
     
     return (
         <div>
-            <h1>Restaurants</h1>
+            <h1 className="mainH1">Restaurants</h1>
             <div className="cards">
                 {allRestaurants}
                 <p><br></br></p>

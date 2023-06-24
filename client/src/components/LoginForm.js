@@ -45,7 +45,7 @@ function LoginForm({setUser, setLogon}) {
                     <label>Password:</label>
                 </div>
                 {errorMessage}
-                <button type="submit">Login</button>
+                <button class="loginButton" type="submit">Login</button>
             </form>
             
             <div className="signup_link">Not a member?<br/>Click the button below to sign up now!<br/>
