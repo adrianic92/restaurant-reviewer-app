@@ -19,8 +19,11 @@ function Restaurants({restaurants}) {
                 {allRestaurants}
                 <p><br></br></p>
             </div>
-            <h3>Don't see your restaurant? Click Below to add a new restaurant!</h3>
-                <Link to={`/restaurants/new`}>Add a New Restaurant</Link>
+            <h1 className="bottomH1">Don't see your restaurant? Click Below to add a new restaurant!</h1>
+            <br/>
+            <div className="infoContainer">
+                <Link className="newRestaurant" to={`/restaurants/new`}>Add a New Restaurant</Link>
+            </div>
         </div>
     )
 }

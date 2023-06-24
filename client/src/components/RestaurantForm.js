@@ -31,18 +31,27 @@ function RestaurantForm({restaurants, setRestaurants}) {
     };
 
   return (
-    <div>
-      <h2>Add Your Restaurant Info:</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Name:</label>
-        <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)}/>
-        <label>Image URL:</label>
-        <input type="text" name="image" value={image} onChange={(e) => setImage(e.target.value)}/>
-        <label>Location:</label>
-        <input type="text" name="location" value={location} onChange={(e) => setLocation(e.target.value)}/>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+    <div className="center">
+          <h1>Add A New Restaurant:</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="field">
+              <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)}/>
+              <span></span>
+              <label>Name:</label>
+            </div>
+            <div className="field">
+              <input type="text" name="image" value={image} onChange={(e) => setImage(e.target.value)}/>
+              <span></span>
+              <label>Image URL:</label>
+            </div>
+            <div className="field">
+              <input type="text" name="location" value={location} onChange={(e) => setLocation(e.target.value)}/>
+              <span></span>
+              <label>Location:</label>
+            </div>
+            <button className="loginButton" type="submit">Submit</button>
+          </form>
+        </div>
   );
 }
 

@@ -25,7 +25,9 @@ function NavBar() {
                     <li><Link className="navbar-link" to="/myreviews"> My Reviews</Link></li>
                     <li><Link className="navbar-link" to="/allreviews"> All Reviews</Link></li>
                     <li><Link className="navbar-link" to="/restaurants">Restaurants</Link></li>
-                    <li><Link className="navbar-link" to="/" onClick={handleLogout}><span>Log Out</span></Link></li>
+                </ul>
+                <ul>
+                <li><Link className="navbar-link" to="/" onClick={handleLogout}><span>Log Out</span></Link></li>
                 </ul>
             </div>
         </div>

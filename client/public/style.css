@@ -29,7 +29,18 @@ body {
 
 .outer {
     display: grid;
-    justify-content: center;
+    justify-content: left;
+}
+
+.inner{
+    padding: 10rem;
+    align-self: center;
+    justify-self: left;
+    font-size: 3rem;
+}
+
+.innerH1 {
+    color: white;
 }
 
 .main{
@@ -54,7 +65,7 @@ body {
 
 .navbar {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 3fr 1fr;
     max-width: 100%;
     align-items: center;
     justify-content:center;
@@ -72,7 +83,7 @@ body {
 .navbar ul li{
     list-style: none;
     display: inline-block;
-    padding: .5rem;
+    padding: 1.5rem;
     font-weight: bolder;
 }
 
@@ -432,5 +443,19 @@ form .field{
 
 .delete:hover{
     background-color: red;
+    color: white;
+}
+
+.newRestaurant {
+    color: white;
+    text-align: center;
+    font-size: x-large;
+    max-width: 100%;
+    padding: 0 0 2rem 0;
+    text-transform: uppercase;
+}
+
+.bottomH1 {
+    text-align: center;
     color: white;
 }

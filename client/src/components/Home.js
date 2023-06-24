@@ -3,9 +3,9 @@ import React from "react";
 function Home() {
     return(
         <div className="outer">
-        <div className="main">
-            <h1 className="mainH1">This is home!</h1>
-        </div>
+            <div className="inner">
+                <h1 className="innerH1">Welcome</h1>
+            </div>
         </div>
     )
 }
