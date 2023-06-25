@@ -6,6 +6,7 @@ function RestaurantForm({restaurants, setRestaurants}) {
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
     const [image, setImage] = useState("");
+    const [err, setErr] = useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,13 +24,20 @@ function RestaurantForm({restaurants, setRestaurants}) {
             },
             body: JSON.stringify(newRestaurant)
         })
-        .then(resp => resp.json())
-        .then(data => {
-            setRestaurants([...restaurants, data])
-            history.push(`/restaurants/${data.id}`)
-        })
-    };
-
+        .then(resp => {
+          if (resp.ok) {
+            resp.json()
+            .then(data => {
+              setRestaurants([...restaurants, data])
+              history.push(`/restaurants/${data.id}`)
+            }
+          )} else {
+            resp.json()
+            .then( error => setErr(error.errors))
+          }
+        })}
+        
+        const errorMessage = err.map( message => <p key={message} className="errorMessage">{message}</p>)
   return (
     <div className="center">
           <h1>Add A New Restaurant:</h1>
@@ -49,6 +57,7 @@ function RestaurantForm({restaurants, setRestaurants}) {
               <span></span>
               <label>Location:</label>
             </div>
+            {errorMessage}
             <button className="loginButton" type="submit">Submit</button>
           </form>
         </div>
