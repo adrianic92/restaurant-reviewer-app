@@ -1,3 +1,68 @@
+# Restaurant Reviewer App
+
+Welcome to the Restaurant Reviewer App!
+
+This repo contains the Frontend and Backend of the Phase 4 Project. The frontend consists of one Single Page Application (SPA) that interacts with a Rails API backend that uses Active Record for this project to perform CREATE, READ, UPDATE, DELETE (CRUD) operations.
+
+The Backend consists of three models: Users, Reviews, and Restaurants. Each User has many reviews. Each restaurant has many reviews. Each Review belongs to one User and one Restaurant. Users have many Restaurants through Reviews. Restaurants have many Users through Reviews.
+
+### Create
+We can create new Users through POST requests.
+We can create new Reviews through POST requests.
+We can create new Restaurants through POST requests.
+
+### Read
+We can read all the Restaurants in the database through GET requests.
+We can read all of the Reviews for each restaurant through GET requests.
+The application will verify that a User exists by looking through all Users in the database.
+
+### Update
+We can update the information from our Reviews to change the description and rating.
+
+### Delete
+Users can delete their Reviews from the database.
+
+## Installation Instructions
+- Fork and Clone this repository
+- Run 'bundle install' on your terminal to install dependencies
+- Run 'rails server' or 'rails s' to begin running the server.
+- Run 'npm install --prefix client' on your terminal to install dependencies
+- Run 'npm start --prefix client' on your terminal to open the SPA
+- Fork and Clone the back end repository --> Follow this link "https://github.com/adrianic92/restaurant-reviewer-app" to get to the repository
+
+## Credits
+- Pexels at https://www.pexels.com/ for images
+- Google Images at https://www.images.google.com/ for images
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Project Template: React/Rails API
 
 ## Description
