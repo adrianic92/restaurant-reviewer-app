@@ -9,6 +9,7 @@ function ReviewForm({restaurants, addAll}) {
     const restaurant = restaurants.find(restaurant => restaurant.id === parseInt(id))
     const history = useHistory()
     const [user] = useContext( UserContext )
+    const [err, setErr] = useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,15 +26,23 @@ function ReviewForm({restaurants, addAll}) {
           },
           body: JSON.stringify(newReview)
         })
-        .then(resp => resp.json())
-        .then(data => {
-          addAll(data);
-          history.push('/myreviews')
+        .then(resp => {
+          if (resp.ok) {
+            resp.json()
+            .then(data => {
+              addAll(data);
+              history.push('/myreviews')
+            })
+          } else {
+            resp.json()
+            .then( error => setErr(error.errors))
+          }
         })
     };
 
     if (!restaurant) { return (<h1>Loading...</h1>)}
 
+    const errorMessage = err.map( message => <p key={message} className="errorMessage">{message}</p>)
 
   return (
     <div>
@@ -71,6 +80,7 @@ function ReviewForm({restaurants, addAll}) {
                 </select>
                 
               </div>
+              {errorMessage}
               <button className="submitButton" type="submit">Submit</button>
             </form>
           </div>

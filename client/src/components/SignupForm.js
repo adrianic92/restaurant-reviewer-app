@@ -19,7 +19,7 @@ function SignupForm({setUser, setLogon}) {
                 name,
                 username,
                 password,
-                passwordConfirmation
+                password_confirmation: passwordConfirmation
             }),
         })
         .then( resp => {

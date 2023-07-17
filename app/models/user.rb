@@ -4,5 +4,6 @@ class User < ApplicationRecord
     has_many :restaurants, through: :reviews
     validates :name, presence: true
     validates :username, presence: true
-    validates :password_digest, presence: true
+    validates :password, confirmation: true, presence: true
+    validates :password_confirmation, presence: true
 end
