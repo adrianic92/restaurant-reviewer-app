@@ -1,12 +1,14 @@
 class ReviewsController < ApplicationController
     
+    skip_before_action :authorize, only: [:higher]
+
     def index
         reviews = Review.all
         render json: reviews
     end
 
     def create
-        review = Review.create!(review_create_params)
+        review = @current_user.reviews.create!(review_create_params)
         render json: review, status: :created
     end
 
@@ -22,10 +24,21 @@ class ReviewsController < ApplicationController
         render json: review
     end
 
+    def higher
+        number = params[:number]
+        reviews = Review.all.filter {|rev| rev.rating >= number.to_i}.uniq
+        restaurants = reviews. map { |rev| rev.restaurant}.uniq
+        if restaurants.length == 0
+            render json: "Sorry, no reviews"
+        else
+            render json: restaurants
+        end
+    end
+
     private
 
     def review_create_params
-        params.permit(:user_id, :restaurant_id, :rating, :description)
+        params.permit(:restaurant_id, :rating, :description)
     end
 
     def review_update_params

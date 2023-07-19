@@ -1,23 +1,28 @@
 import Home from './Home';
 import NavBar from './NavBar';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import { Route, Switch } from "react-router-dom";
 import Reviews from './Reviews';
 import Restaurants from './Restaurants';
 import ReviewForm from './ReviewForm';
 import RestaurantForm from './RestaurantForm';
+import { UserContext } from "./App";
 
 
 function LoggedIn() {
   const [restaurants, setRestaurants] = useState([]);
   const [allReviews, setAllReviews] = useState([])
   const [myReviews, setMyReviews] = useState([])
-   
+  const [user, setUser] = useContext(UserContext)
+
   useEffect( () => {
       fetch('/reviews')
       .then(resp => resp.json())
       .then(data => setAllReviews(data))
   }, [] )
+
+  console.log(myReviews)
+  console.log(user.reviews)
 
   useEffect( () => {
     fetch('/myreviews')

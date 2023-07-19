@@ -1,6 +1,5 @@
-import React, {useState, useContext} from "react";
+import React, {useState} from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { UserContext } from "./App";
 
 function ReviewForm({restaurants, addAll}) {
     const {id} = useParams()
@@ -8,13 +7,11 @@ function ReviewForm({restaurants, addAll}) {
     const [rating, setRating] = useState('');
     const restaurant = restaurants.find(restaurant => restaurant.id === parseInt(id))
     const history = useHistory()
-    const [user] = useContext( UserContext )
     const [err, setErr] = useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const newReview = {
-          "user_id": user.id,
           "restaurant_id": id,
           "description": description,
           "rating": rating
