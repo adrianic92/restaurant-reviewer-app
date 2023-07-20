@@ -20,6 +20,7 @@ function App() {
   if (!user) {
     return <Login setUser={setUser} />
   } else {
+    console.log(user)
     return (
       <UserContext.Provider value={[user, setUser]}>
         <LoggedIn />

@@ -2,6 +2,9 @@ import React from 'react';
 
 function AllReviewList({ review, change, deleteAll, setSelectedReview, setShow }) {
   
+  if (!review.restaurant) { return null }
+  if (!review.restaurant.name) { return null }
+
   function handleEdit() {
     setSelectedReview(review)
     setShow(true)

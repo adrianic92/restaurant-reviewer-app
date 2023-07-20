@@ -11,24 +11,19 @@ import { UserContext } from "./App";
 
 function LoggedIn() {
   const [restaurants, setRestaurants] = useState([]);
-  const [allReviews, setAllReviews] = useState([])
-  const [myReviews, setMyReviews] = useState([])
   const [user, setUser] = useContext(UserContext)
+  const myReviews = user.reviews
+  
+  const theReviews = []
+  restaurants.forEach(rest => rest.reviews.forEach(rev => {
+    const addedRest = Object.assign({}, rev)
+    addedRest.restaurant = rest
+    theReviews.push(addedRest)
+    })
+  )
 
-  useEffect( () => {
-      fetch('/reviews')
-      .then(resp => resp.json())
-      .then(data => setAllReviews(data))
-  }, [] )
 
-  // console.log(myReviews)
-  // console.log(user.reviews)
-
-  useEffect( () => {
-    fetch('/myreviews')
-    .then(resp => resp.json())
-    .then(data => setMyReviews(data))
-}, [] )
+  console.log(theReviews)
 
   useEffect( () => {
     fetch('/restaurants')
@@ -37,8 +32,10 @@ function LoggedIn() {
 }, [] )
 
 function addAll(review) {
-  setAllReviews([...allReviews, review])
-  setMyReviews([...myReviews, review])
+  const addedReview = Object.assign({}, user)
+  addedReview.reviews.push(review)
+  setUser(addedReview)
+
   const addedRestaurants = restaurants.map( restaurant => {
     if (restaurant.id === parseInt(review.restaurant_id)) {
       const updatedReview = Object.assign({}, restaurant)
@@ -52,11 +49,10 @@ function addAll(review) {
 }
 
 function deleteAll(review) {
-  const updatedAllReviews = allReviews.filter( rev => parseInt(rev.id) !== parseInt(review.id))
-  setAllReviews(updatedAllReviews)
-
-  const updatedMyReviews = myReviews.filter( rev => parseInt(rev.id) !== parseInt(review.id))
-  setMyReviews(updatedMyReviews)
+  const updatedMyReviews = user.reviews.filter( rev => parseInt(rev.id) !== parseInt(review.id))
+  const addedReview = Object.assign({}, user)
+  addedReview.reviews = updatedMyReviews
+  setUser(addedReview)
 
   const updatedRestaurants = restaurants.map( restaurant => {
     if (restaurant.id === parseInt(review.restaurant_id)) {
@@ -72,19 +68,15 @@ function deleteAll(review) {
 }
 
 function updateAll(review) {
-  const updatedAllReviews = allReviews.map( rev => {
-    if (rev.id === review.id) {
-      return review
-    } else {return rev}
-  })
-  setAllReviews(updatedAllReviews)
 
-  const updatedMyReviews = myReviews.map ( rev => {
+  const updatedMyReviews = user.reviews.map ( rev => {
     if (rev.id === review.id) {
       return review
     } else { return rev }
   })
-  setMyReviews(updatedMyReviews)
+  const addedReview = Object.assign({}, user)
+  addedReview.reviews = updatedMyReviews
+  setUser(addedReview)
 
   const updatedRestaurants = restaurants.map( rest => {
     if (rest.id === review.restaurant_id) {
@@ -110,7 +102,7 @@ function updateAll(review) {
           <Home />
         </Route>
         <Route exact path="/allreviews">
-          <Reviews reviews={allReviews} change={true} deleteAll={deleteAll}/>
+          <Reviews reviews={theReviews} change={true} deleteAll={deleteAll}/>
         </Route>
         <Route exact path="/myreviews">
           <Reviews reviews={myReviews} change={false} deleteAll={deleteAll} updateAll={updateAll}/>

@@ -2,15 +2,13 @@ import React, {useContext} from "react";
 import { UserContext } from "./App";
 
 function RestaurantList() {
-    const [user, setUser] = useContext(UserContext)
+    const [user] = useContext(UserContext)
 
-    const restaurants = user.restaurants.map( rest => {
+    const restaurants = user.reviews.map( rest => {
         return (
-            <span key={rest.id}>|{rest.name}|</span>
+            <span key={rest.id}>| {rest.restaurant.name} |</span>
         )
     })
-
-    console.log(user.restaurants, "user")
 
     return (
         <div className="bottomH1">
