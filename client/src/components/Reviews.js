@@ -25,7 +25,7 @@ function Reviews({reviews, change, deleteAll, updateAll}) {
         <div>
             {change ? <h1 className="mainH1">All Reviews</h1> : 
             <h1 className="mainH1">My Reviews</h1>}
-            {change ? null : <RestaurantList />}
+            {change ? null : <RestaurantList reviews={reviews}/>}
             {!change ? (show ? <EditReview review={selectedReview} handleChangeForm={handleChangeForm} updateAll={updateAll} setShow={setShow}/> : null) : null}
         <div className="main">
             {allReviews}

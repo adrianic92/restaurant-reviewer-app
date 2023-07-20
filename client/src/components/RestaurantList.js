@@ -1,10 +1,8 @@
 import React, {useContext} from "react";
-import { UserContext } from "./App";
 
-function RestaurantList() {
-    const [user] = useContext(UserContext)
+function RestaurantList({reviews}) {
 
-    const restaurants = user.reviews.map( rest => {
+    const restaurants = reviews.map( rest => {
         return (
             <span key={rest.id}>| {rest.restaurant.name} |</span>
         )

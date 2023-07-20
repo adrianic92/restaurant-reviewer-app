@@ -12,8 +12,9 @@ import { UserContext } from "./App";
 function LoggedIn() {
   const [restaurants, setRestaurants] = useState([]);
   const [user, setUser] = useContext(UserContext)
-  const myReviews = user.reviews
   
+  
+
   const theReviews = []
   restaurants.forEach(rest => rest.reviews.forEach(rev => {
     const addedRest = Object.assign({}, rev)
@@ -22,8 +23,11 @@ function LoggedIn() {
     })
   )
 
+  const myReviews = [...theReviews].filter(rev => rev["user_id"] === user.id)
+
 
   console.log(theReviews)
+  console.log(myReviews)
 
   useEffect( () => {
     fetch('/restaurants')
