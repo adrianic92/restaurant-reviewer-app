@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import AllReviewList from "./AllReviewList";
 import EditReview from "./EditReview";
+import RestaurantList from "./RestaurantList";
 
 function Reviews({reviews, change, deleteAll, updateAll}) {
     const [selectedReview, setSelectedReview] = useState(null)
@@ -24,6 +25,7 @@ function Reviews({reviews, change, deleteAll, updateAll}) {
         <div>
             {change ? <h1 className="mainH1">All Reviews</h1> : 
             <h1 className="mainH1">My Reviews</h1>}
+            {change ? null : <RestaurantList />}
             {!change ? (show ? <EditReview review={selectedReview} handleChangeForm={handleChangeForm} updateAll={updateAll} setShow={setShow}/> : null) : null}
         <div className="main">
             {allReviews}

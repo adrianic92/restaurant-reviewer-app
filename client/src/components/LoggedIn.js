@@ -21,8 +21,8 @@ function LoggedIn() {
       .then(data => setAllReviews(data))
   }, [] )
 
-  console.log(myReviews)
-  console.log(user.reviews)
+  // console.log(myReviews)
+  // console.log(user.reviews)
 
   useEffect( () => {
     fetch('/myreviews')
