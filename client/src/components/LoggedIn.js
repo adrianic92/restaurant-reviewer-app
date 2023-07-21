@@ -13,21 +13,7 @@ function LoggedIn() {
   const [restaurants, setRestaurants] = useState([]);
   const [user, setUser] = useContext(UserContext)
   
-  
-
-  const theReviews = []
-  restaurants.forEach(rest => rest.reviews.forEach(rev => {
-    const addedRest = Object.assign({}, rev)
-    addedRest.restaurant = rest
-    theReviews.push(addedRest)
-    })
-  )
-
-  const myReviews = [...theReviews].filter(rev => rev["user_id"] === user.id)
-
-
-  console.log(theReviews)
-  console.log(myReviews)
+  const allReviews = restaurants.map( rest => rest.reviews).flat()
 
   useEffect( () => {
     fetch('/restaurants')
@@ -36,9 +22,12 @@ function LoggedIn() {
 }, [] )
 
 function addAll(review) {
+  console.log("Review", review)
   const addedReview = Object.assign({}, user)
   addedReview.reviews.push(review)
+  addedReview.restaurants.push(review.restaurant)
   setUser(addedReview)
+  console.log("Added Review", addedReview)
 
   const addedRestaurants = restaurants.map( restaurant => {
     if (restaurant.id === parseInt(review.restaurant_id)) {
@@ -49,13 +38,15 @@ function addAll(review) {
       return restaurant;
   })
   setRestaurants(addedRestaurants)
-
+  console.log("Added Restaurant", addedRestaurants)
 }
 
 function deleteAll(review) {
   const updatedMyReviews = user.reviews.filter( rev => parseInt(rev.id) !== parseInt(review.id))
+  const updatedMyRestaurants = user.restaurants.filter( rest => rest.name !== review.restaurant_name)
   const addedReview = Object.assign({}, user)
   addedReview.reviews = updatedMyReviews
+  addedReview.restaurants = updatedMyRestaurants
   setUser(addedReview)
 
   const updatedRestaurants = restaurants.map( restaurant => {
@@ -106,10 +97,10 @@ function updateAll(review) {
           <Home />
         </Route>
         <Route exact path="/allreviews">
-          <Reviews reviews={theReviews} change={true} deleteAll={deleteAll}/>
+          <Reviews reviews={allReviews} change={true} deleteAll={deleteAll}/>
         </Route>
         <Route exact path="/myreviews">
-          <Reviews reviews={myReviews} change={false} deleteAll={deleteAll} updateAll={updateAll}/>
+          <Reviews reviews={user.reviews} change={false} deleteAll={deleteAll} updateAll={updateAll} restaurants={user.restaurants}/>
         </Route>
         <Route exact path="/restaurants">
           <Restaurants restaurants={restaurants} />

@@ -4,5 +4,5 @@ class Restaurant < ApplicationRecord
 
     validates :name, uniqueness: true, presence: true
     validates :image, uniqueness: true, presence: true
-    validates :location, uniqueness: true, presence: true
+    validates :location, presence: true
 end

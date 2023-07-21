@@ -1,10 +1,10 @@
 import React from "react";
 
-function RestaurantList({reviews}) {
+function RestaurantList({restaurants}) {
 
-    const restaurants = reviews.map( rest => {
+    const allRestaurants = restaurants.map( rest => {
         return (
-            <span key={rest.id}>| {rest.restaurant.name} |</span>
+            <span key={rest.id}>| {rest.name} |</span>
         )
     })
 
@@ -13,7 +13,7 @@ function RestaurantList({reviews}) {
             <br/>
             <h2>Restaurants Reviewed:</h2>
             <br/>
-            {restaurants}
+            {allRestaurants}
         </div>
     )
 

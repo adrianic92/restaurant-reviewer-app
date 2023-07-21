@@ -3,7 +3,7 @@ import AllReviewList from "./AllReviewList";
 import EditReview from "./EditReview";
 import RestaurantList from "./RestaurantList";
 
-function Reviews({reviews, change, deleteAll, updateAll}) {
+function Reviews({reviews, change, deleteAll, updateAll, restaurants}) {
     const [selectedReview, setSelectedReview] = useState(null)
     const [show, setShow] = useState(false)
     
@@ -25,7 +25,7 @@ function Reviews({reviews, change, deleteAll, updateAll}) {
         <div>
             {change ? <h1 className="mainH1">All Reviews</h1> : 
             <h1 className="mainH1">My Reviews</h1>}
-            {change ? null : <RestaurantList reviews={reviews}/>}
+            {change ? null : <RestaurantList restaurants={restaurants}/>}
             {!change ? (show ? <EditReview review={selectedReview} handleChangeForm={handleChangeForm} updateAll={updateAll} setShow={setShow}/> : null) : null}
         <div className="main">
             {allReviews}
